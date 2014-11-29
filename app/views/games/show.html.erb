@@ -1,0 +1,197 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>NAME:</strong>
+  <%= @game.name %>
+</p>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<body>
+	
+	<div style="text-align:left"> </div>
+
+	<img id="cluegb" src="http://1.bp.blogspot.com/_U1W7tPM1t20/S7NlQg1FskI/AAAAAAAAHIM/oV5xb4I_VpU/s1600/GameboardClue1963small.jpg" width="601" height="600" style="display:none">
+	<canvas id="canvasOne" width="601" height="600"> </canvas>
+  
+  	<div id="communityCards"></div>
+
+	<h3 id = "choosePlayer"> PLEASE ANNOUNCE AND CHOOSE YOUR PLAYER </h3>
+	<h3 id = "player1" visibility = "hidden"> PLAYER 1 CARDS </h3>
+	<h3 id = "player2" visibility = "hidden"> PLAYER 2 CARDS </h3>
+	<h3 id = "player3" visibility = "hidden"> PLAYER 3 CARDS </h3>
+	<h3 id = "community" visibility = "hidden"> COMMUNITY CARDS </h3>
+	<h3 id = "diceRoll" visibility = "hidden"> DICE ROLL </h3>
+	<h3 id = "murderTitle" visibility = "hidden"> MURDER - ANNOUNCE BEFORE CHECKING </h3>
+	<h3 id = "publicChat" visibility = "hidden"> PUBLIC CHAT - ASK QUESTIONS </h3>
+	<h3 id = "privateChat" visibility = "hidden"> PRIVATE CHAT - ANSWER QUESTIONS </h3>
+
+	<div id ="player"></div>
+
+	<button class = "myButton" id="player1btn" onclick =" style.display = 'none' "> PLAYER 1 </button> 
+	<button class = "myButton" id="player2btn" onclick =" style.display = 'none' "> PLAYER 2 </button>
+	<button class = "myButton" id="player3btn" onclick =" style.display = 'none' "> PLAYER 3 </button>
+	<button class = "myButton" id="murderButton"  onclick =" style.display = 'none' "> MURDER </button>
+
+
+	<div id="murder"> </div>
+
+	
+
+
+
+
+<!-- detective corner -->
+
+	<h3 id = "notes" visibility = "hidden"> DETECTIVE NOTES </h3>
+
+	<table id="weapons" border="2" style="width:30%">
+
+  		<tr><th colspan="3"><b>WEAPONS</b></th><tr>
+  		<tr>
+    		<td><input type="checkbox">Knife</td>
+    		<td><input type="checkbox">Revolver</td>
+    		<td><input type="checkbox">Candlestick</td>
+  		</tr>
+  		<tr>
+    		<td><input type="checkbox">Leadpipe</td>
+    		<td><input type="checkbox">Wrench</td>
+    		<td><input type="checkbox">Rope</td>
+  		</tr>
+
+	</table>
+
+	<table id= "suspects" border="2" style="width:30%">
+
+  		<tr><th colspan="3"><b>SUSPECTS</b></th></tr>
+  		<tr>
+    		<td><input type="checkbox">Miss Scarlet</td>
+    		<td><input type="checkbox">Mrs. White</td>
+    		<td><input type="checkbox">Mrs. Peacock</td>
+  		</tr>
+  		<tr>
+   			<td><input type="checkbox">Colonel Mustard</td>
+    		<td><input type="checkbox">Professor Plum</td>
+    		<td><input type="checkbox">Mr. Green</td>
+  		</tr>
+
+	</table>
+
+	<table id ="rooms" border="2" style="width:30%">
+
+ 	 	<tr><th colspan="3"><b>ROOMS</b></th></tr>
+  	 	<tr>
+      		<td><input type="checkbox">Billiard Room</td>
+      		<td><input type="checkbox">Ballroom</td>
+      		<td><input type="checkbox">Kitchen</td>
+  		</tr>
+  		<tr>
+    		<td><input type="checkbox">Conservatory</td>
+    		<td><input type="checkbox">Study</td>
+    		<td><input type="checkbox">Lounge</td>
+  		</tr>
+  		<tr>
+   			<td><input type="checkbox">Dining Room</td>
+    		<td><input type="checkbox">Hall</td>
+    		<td><input type="checkbox">Library<br></td>
+  		</tr>
+
+	</table>
+
+	<textarea id="notepad" rows="19" cols="30"> Write your CLUES here. </textarea>
+
+	<%= yield %>
+
+	<footer>
+		<%= link_to 'Edit', edit_game_path(@game) %> |
+		<%= link_to 'Back', games_path %>
+	</footer>	
+
+
+</body>
+
+<script>
+
+  window.addEventListener("load", windowLoadHandler, false);
+  var Debugger = function() { };
+
+  var theCanvas = document.getElementById("canvasOne");
+  var context = theCanvas.getContext("2d");
+  var img = document.getElementById("cluegb");
+
+  var numPieces;
+  var pieces;
+  var dragIndex;
+  var dragging;
+  var mouseX;
+  var mouseY;
+  var dragHoldX;
+  var dragHoldY;
+  
+    
+  Debugger.log = function(message) {
+    try {
+      console.log(message);
+
+    }
+    catch (exception) {
+      return;
+    }
+  }
+
+  init();
+
+</script>
+
+<style>
+
+.myButton {
+  -moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  -webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  box-shadow:inset 0px 1px 3px 0px #91b8b3;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c2a636), color-stop(1, #baba30));
+  background:-moz-linear-gradient(top, #c2a636 5%, #baba30 100%);
+  background:-webkit-linear-gradient(top, #c2a636 5%, #baba30 100%);
+  background:-o-linear-gradient(top, #c2a636 5%, #baba30 100%);
+  background:-ms-linear-gradient(top, #c2a636 5%, #baba30 100%);
+  background:linear-gradient(to bottom, #c2a636 5%, #baba30 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c2a636', endColorstr='#baba30',GradientType=0);
+  background-color:#c2a636;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  border:1px solid #566963;
+  display:inline-block;
+  cursor:pointer;
+  color:#000
+  font-family: verdana;
+  font-size:10.5px;
+  font-weight:bold;
+  padding:11px 23px;
+  text-decoration:none;
+  /*text-shadow:0px -1px 0px #2b665e*/
+  text-shadow:0px -1px 0px #BABAA7
+}
+
+.myButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #baba30), color-stop(1, #c2a636));
+  background:-moz-linear-gradient(top, #baba30 5%, #c2a636 100%);
+  background:-webkit-linear-gradient(top, #baba30 5%, #c2a636 100%);
+  background:-o-linear-gradient(top, #baba30 5%, #c2a636 100%);
+  background:-ms-linear-gradient(top, #baba30 5%, #c2a636 100%);
+  background:linear-gradient(to bottom, #baba30 5%, #c2a636 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#baba30', endColorstr='#c2a636',GradientType=0);
+  background-color:#baba30;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+
+</style>
+
+
+
+

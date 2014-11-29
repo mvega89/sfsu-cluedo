@@ -1,0 +1,202 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* 
+Place all the styles related to the Cards controller here.
+They will automatically be included in application.css.
+You can use Sass (SCSS) here: http://sass-lang.com/ 
+*/
+
+body {
+    background-color: #FFFFF5;
+    font-family: verdana;
+    font-size: 12px;
+    /*font-weight:bold;*/
+
+}
+
+.images {
+  border-radius: 10px; 
+}
+
+/*player cards*/
+#player {
+  position: absolute;
+  left: 650px;
+  top: 65px;
+}
+
+/*communit cards*/
+#communityCards {
+
+  position: absolute;
+  /*left: 650px;*/
+  /*top: 250px;*/
+  top: 680px;
+}
+
+#murderTitle {
+	visibility: collapse;
+	position: absolute;
+	top: 860px;
+}
+
+#murder {
+	visibility: collapse; 
+	position: absolute;
+	top: 900px;
+}
+
+/*detective notes*/
+#weapons {
+  	visibility: collapse; 
+  	position: absolute;;
+  	left:650px;
+  	/*top:475px;*/
+  	top: 275px;
+}
+
+#suspects {
+  	visibility: collapse; 
+  	position: absolute;;
+  	left:650px;
+  	top:358px;
+}
+
+#rooms {
+  	visibility: collapse; 
+  	position: absolute;;
+  	left:650px;
+  	top:440px;
+
+}
+
+#notepad {
+
+  	visibility: collapse; 
+  	position: absolute;;
+  	left:1080px;
+  	top:275px;
+
+}
+
+
+/*title*/
+#community {
+
+  	visibility: collapse; 
+  	position: absolute;
+  	/*left: 650px;*/
+  	/*top: 215px;*/
+  	top:640px;
+
+}
+
+/*title*/
+#diceRoll {
+  	visibility: collapse; 
+  	position: absolute;
+  	top:640px;
+  	left: 400px;
+}
+
+/*title*/
+#choosePlayer {
+  	position: absolute;
+  	left: 650px;
+  	top: 25px;
+}
+
+/*title*/
+#notes {
+	visibility: collapse; 
+  	position: absolute;
+  	left: 650px;
+  	top: 235px;
+  /*top: 440px;*/
+
+}
+
+/*buttons*/
+#player1btn {
+  	position: absolute;
+  	left: 650px;
+  	top: 65px;
+}
+
+#player2btn {
+  	position: absolute;
+  	left: 775px;
+  	top: 65px;
+}
+
+#player3btn {
+  	position: absolute;
+  	left: 900px;
+  	top: 65px;
+
+}
+
+#murderButton {
+	visibility: collapse;
+ 	position: absolute;
+ 	top: 900px;
+ 	left: 5px;
+}
+
+/*title after choosing player*/
+#player1 {
+	visibility: collapse; 
+  	position: absolute;
+  	left: 650px;
+  	top: 25px;
+}
+
+#player2 {
+  	visibility: collapse;
+  	position: absolute;
+  	left: 650px;
+  	top: 25px; 
+}
+
+#player3 {
+  	visibility: collapse; 
+  	position: absolute;
+  	left: 650px;
+  	top: 25px;
+}
+
+#publicChat {
+  	visibility: collapse; 
+  	position: absolute;
+  	left: 650px;
+  	top: 640px;
+
+}
+
+#privateChat{
+	visibility: collapse;
+	position: absolute;
+  	left: 650px;
+  	top: 840px;
+}
+
+footer {
+  position: absolute;
+  top: 1100px;
+
+}
+
