@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'message/broadcast'
+
   devise_for :users
   resources :cards
 
